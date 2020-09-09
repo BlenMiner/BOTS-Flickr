@@ -4,7 +4,7 @@
 <button (click)="requestSearch()"> Search </button>
 
 <p>Total results: {{photosResult == null ? 0 : photosResult.photos.total}}</p>
-<p>Page {{ photosResult.photos.page }} of {{ photosResult.photos.pages }}</p>
+<p>Page {{ photosResult == null ? 0 :photosResult.photos.page }} of {{ photosResult == null ? 0 :photosResult.photos.pages }}</p>
 
 <div *ngIf="photosResult !== null">
   <img

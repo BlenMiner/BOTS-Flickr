@@ -38,6 +38,6 @@ export class FlickrService {
     const apiUrl = "https://www.flickr.com/services/rest/?method=flickr.photos.search";
     const api_key: string = "b77ab70e977903ba9c91e9d732d00f3f";
 
-    return this.http.get<IPhotosResult>(`${apiUrl}&api_key=${api_key}&tags=${tags}&format=json&nojsoncallback=1`);
+    return this.http.get<IPhotosResult>(`${apiUrl}&api_key=${api_key}&text=${tags}&format=json&nojsoncallback=1`);
   }
 }
