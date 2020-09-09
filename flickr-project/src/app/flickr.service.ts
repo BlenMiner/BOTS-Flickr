@@ -34,10 +34,12 @@ export class FlickrService {
 
   constructor(private http: HttpClient) { }
 
-  search(tags: string): Observable<IPhotosResult> {
-    const apiUrl = "https://www.flickr.com/services/rest/?method=flickr.photos.search";
+  search(tags: string, inGallery: boolean = false, nsfw: boolean = true, page: number = 1): Observable<IPhotosResult> {
+    const apiUrl = "https://www.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&media=photos";
     const api_key: string = "b77ab70e977903ba9c91e9d732d00f3f";
 
-    return this.http.get<IPhotosResult>(`${apiUrl}&api_key=${api_key}&text=${tags}&format=json&nojsoncallback=1`);
+    let filters = `&in_gallery=${inGallery}&page=${page}&safe_search=${nsfw ? '3' : '2'}`;
+
+    return this.http.get<IPhotosResult>(`${apiUrl}&api_key=${api_key}&text=${tags}${filters}`);
   }
 }
