@@ -1,3 +1,16 @@
 <h1>{{title}}</h1>
 
+<input type="text" [(ngModel)]="searchEntry" />
+<button (click)="requestSearch()"> Search </button>
+
+<p>Total results: {{photosResult == null ? 0 : photosResult.photos.total}}</p>
+<p>Page {{ photosResult.photos.page }} of {{ photosResult.photos.pages }}</p>
+
+<div *ngIf="photosResult !== null">
+  <img
+    *ngFor="let res of photosResult.photos.photo"
+    style="max-height: 200px;"
+    src="https://farm{{res.farm}}.staticflickr.com/{{res.server}}/{{res.id}}_{{res.secret}}.jpg"
+  />
+</div>
 <router-outlet></router-outlet>
