@@ -5,10 +5,21 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NavheaderComponent } from './navheader/navheader.component';
+import { ToolboxComponent } from './toolbox/toolbox.component';
+import { ImageviewComponent } from './imageview/imageview.component';
+import { BrowseviewComponent } from './browseview/browseview.component';
+import { AioviewComponent } from './aioview/aioview.component';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavheaderComponent,
+    ToolboxComponent,
+    ImageviewComponent,
+    BrowseviewComponent,
+    AioviewComponent
   ],
   imports: [
     BrowserModule,

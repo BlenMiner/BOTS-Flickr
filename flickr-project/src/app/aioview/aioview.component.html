@@ -1,0 +1,7 @@
+
+<div *ngFor="let array of imageArray" class="row" style="border: 1px solid black;">
+
+    <div *ngFor="let element of array" class="col-md-3" style="border: 1px solid black;">
+        <img [src]="element" class="w-100"/>
+    </div>
+</div>

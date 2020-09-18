@@ -1,0 +1,5 @@
+<div class="w-100 h-100">
+    {{displayMode}}
+    <app-aioview *ngIf="displayMode == '0'" [imageArray]="imageArrayToImageViewAio"></app-aioview>
+    <app-browseview *ngIf="displayMode == '1'" [imageArrayToBrowseView]="imageArrayToImageView"></app-browseview>
+</div>

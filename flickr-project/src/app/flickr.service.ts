@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface IPhoto {
@@ -32,14 +32,37 @@ export interface IPhotosResult {
 })
 export class FlickrService {
 
+  result: IPhotosResult = null;
   constructor(private http: HttpClient) { }
 
-  search(tags: string, inGallery: boolean = false, nsfw: boolean = true, page: number = 1): Observable<IPhotosResult> {
-    const apiUrl = "https://www.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&media=photos";
-    const api_key: string = "b77ab70e977903ba9c91e9d732d00f3f";
+  search(text: string, minDate?: Date, maxDate?: Date): Observable<IPhotosResult> {
+    let apiKey = "3e120b161195c11e5e35d6dac8a1b548";
+    let fullLink = "https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=" + apiKey;
+    
+    if (!text || text == "")
+    {
+      return null;
+    }
+    
+    fullLink += "&text=" + text;
+    if (minDate)
+    {
+        fullLink += "&min_upload_date=" + minDate;
+    }
+    if (maxDate)
+    {
+        fullLink += "&min_upload_date=" + maxDate;
+    }
 
-    let filters = `&in_gallery=${inGallery}&page=${page}&safe_search=${nsfw ? '3' : '2'}`;
 
-    return this.http.get<IPhotosResult>(`${apiUrl}&api_key=${api_key}&text=${tags}${filters}`);
+    const apiUrl = "https://www.flickr.com/services/rest/?method=flickr.photos.search";
+    const api_key: string = "3e120b161195c11e5e35d6dac8a1b548";
+
+    console.log(fullLink + "&format=json&nojsoncallback=1");
+    
+    return this.http.get<IPhotosResult>(fullLink + "&format=json&nojsoncallback=1");
+
+    //return this.http.get<IPhotosResult>(`${apiUrl}&api_key=${api_key}&text=${tags}&format=json&nojsoncallback=1`);
   }
+
 }
