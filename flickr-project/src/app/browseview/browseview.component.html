@@ -1,4 +1,4 @@
-<div *ngIf="imageToReturn == '';else image_content" style="height: 700px;border: 0px solid black;" class="d-flex align-items-center justify-content-center w-100">
+<!--<div *ngIf="imageToReturn == '';else image_content" style="height: 700px;border: 0px solid black;" class="d-flex align-items-center justify-content-center w-100">
     <span class="spinner-border text-warning">Waiting...</span>
 </div>
 <ng-template #image_content >
@@ -10,4 +10,18 @@
     <input type="button" class="btn btn-warning" value="<" style="width: 250px;height: 50px;" (click)="previousImage()"/>
     <input type="button" class="btn btn-secondary" value="{{incr}}/{{imageArrayToBrowseView.length}}" style="width: 250px;height: 50px;"/>
     <input type="button" class="btn btn-warning" value=">" style="width: 250px;height: 50px;float: right;" (click)="nextImage()"/>
-</div>
+</div>-->
+
+<div style="width: 100%; padding: 10px;" class="center">
+    <div style="height: calc(100vh - 200px);">
+      <img [src]="getUrl()" style="height: calc(100vh - 200px);" class="center"/>
+    </div>
+    <br />
+
+    <div class="d-flex justify-content-around" style="border: 0px solid black; width: 100%;">
+        <input type="button" class="btn btn-warning" value="<" style="width: 250px;height: 50px;" (click)="previousImage()"/>
+        <input type="button" class="btn btn-secondary" value="{{incr}}/{{imageArrayToBrowseView.length}}" style="width: 250px;height: 50px;"/>
+        <input type="button" class="btn btn-warning" value=">" style="width: 250px;height: 50px;float: right;" (click)="nextImage()"/>
+    </div>
+
+  </div>

@@ -19,9 +19,18 @@ export class BrowseviewComponent implements OnInit {
     //alert("Browse ngOnInit is called");
   }
 
+  getUrl(): String
+  {
+        if (this.imageToReturn)
+             return this.imageToReturn;
+        else if (this.imageArrayToBrowseView.length != 0)
+            return this.imageArrayToBrowseView[0];
+        else return "";
+  }
+
 
   previousImage()
-  {   
+  {
       this.incr -= 1;
       if (this.incr < 0)
       {

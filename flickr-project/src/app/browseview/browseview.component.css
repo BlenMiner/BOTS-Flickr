@@ -1,0 +1,50 @@
+button {
+    border-radius: 25px;
+    border-style: none;
+    padding: 10px;
+    margin: 3px;
+    box-shadow: 0 0 7px 0px #9a9a9a;
+    transition: box-shadow 0.3s ease-in-out;
+  }
+
+  button:hover {
+    box-shadow: 0 0 10px 0px #666;
+    transition: box-shadow 0.3s ease-in-out;
+  }
+
+  button:focus {
+    outline: none;
+  }
+
+  .center {
+    display: block;
+    margin: auto;
+  }
+
+  .dark {
+    background-color: #000;
+    color: white;
+  }
+
+  .light {
+    background-color: #FFF;
+    color: #000;
+  }
+
+  .right {
+    float: right;
+  }
+
+  img{
+    transform: scale(1);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  img:hover{
+    transform: scale(1.02);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .panel {
+    background-color: rgba(128, 128, 128, 0.109);
+  }
