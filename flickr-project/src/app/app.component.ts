@@ -46,7 +46,7 @@ export class AppComponent {
             this.builtImagesArray.push(this.flickrService.get_img_url(element));
         });
 
-        let e = document.getElementById("display_type");
+        let e = <HTMLSelectElement>document.getElementById("display_type");
         this.displayType = e.options[e.selectedIndex].value;
 
         console.log("Total links: " + len);
