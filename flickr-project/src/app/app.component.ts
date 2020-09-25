@@ -24,7 +24,6 @@ export class AppComponent {
   currentPage: number = 0;
 
   constructor(private flickrService: FlickrService) {
-      this.requestSearch();
   }
 
   requestSearch(): void {
