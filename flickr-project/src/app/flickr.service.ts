@@ -35,34 +35,19 @@ export class FlickrService {
   result: IPhotosResult = null;
   constructor(private http: HttpClient) { }
 
-  search(text: string, minDate?: Date, maxDate?: Date): Observable<IPhotosResult> {
-    let apiKey = "3e120b161195c11e5e35d6dac8a1b548";
-    let fullLink = "https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=" + apiKey;
-    
-    if (!text || text == "")
-    {
-      return null;
-    }
-    
-    fullLink += "&text=" + text;
-    if (minDate)
-    {
-        fullLink += "&min_upload_date=" + minDate;
-    }
-    if (maxDate)
-    {
-        fullLink += "&min_upload_date=" + maxDate;
-    }
+  search(tags: string, minDate?: Date, maxDate?: Date, inGallery: boolean = false, nsfw: boolean = true, page: number = 1): Observable<IPhotosResult> {
+    const apiUrl = "https://www.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&media=photos";
+    const api_key: string = "b77ab70e977903ba9c91e9d732d00f3f";
 
+    let filters = `&in_gallery=${inGallery}&page=${page}&safe_search=${nsfw ? '3' : '2'}`;
 
-    const apiUrl = "https://www.flickr.com/services/rest/?method=flickr.photos.search";
-    const api_key: string = "3e120b161195c11e5e35d6dac8a1b548";
+    if (minDate) filters += "&min_upload_date=" + minDate;
+    if (maxDate) filters += "&min_upload_date=" + maxDate;
 
-    console.log(fullLink + "&format=json&nojsoncallback=1");
-    
-    return this.http.get<IPhotosResult>(fullLink + "&format=json&nojsoncallback=1");
-
-    //return this.http.get<IPhotosResult>(`${apiUrl}&api_key=${api_key}&text=${tags}&format=json&nojsoncallback=1`);
+    return this.http.get<IPhotosResult>(`${apiUrl}&api_key=${api_key}&text=${tags}${filters}`);
   }
 
+  get_img_url(element: IPhoto): String {
+    return "https://farm" + element.farm + ".staticflickr.com/" + element.server + "/" + element.id + "_" + element.secret + ".jpg";
+  }
 }

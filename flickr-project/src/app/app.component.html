@@ -2,9 +2,9 @@
 
 <div class="row d-flex w-100" style="height: 95%;border: 0px solid red;">
 
-  <div class="col-md-3" style="background-color: #00695c;padding-left: 30px;">
-    
-    <span>Search</span>
+    <div class="col-md-3" style="background-color: #073b4c;padding-left: 30px; padding-top: 15px;">
+
+        <label>Search</label>
 
         <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="Enter a word" [(ngModel)]="searchEntry">
@@ -16,7 +16,7 @@
 
         <br><br>
 
-        <span>Min. date</span>
+        <label>Min. date</label>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text"></span>
@@ -25,7 +25,7 @@
         </div>
 
 
-        <span>Max. date</span>
+        <label>Max. date</label>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text"></span>
@@ -43,18 +43,22 @@
 
         <div class="form-group">
             <label for="sort">Display:</label>
-            <select class="form-control" id="sort" [(ngModel)]="displayType">
-                <option value="0">All in one page</option>
+            <select class="form-control" id="display_type">
+                <option value="0" selected>All in one page</option>
                 <option value="1">Browsing one by one</option>
             </select>
         </div>
-        
-
-  </div>
 
 
-  <div class="col-md-9">
-    <app-imageview [imageArrayToImageView]="builtImagesArray" [imageArrayToImageViewAio]="builtImagesArrayForAio" [displayMode]="displayType"></app-imageview>
+    </div>
+
+
+    <div class="col-md-9" style="background-color: #edf6f9;">
+    <div style="margin-top: 10px;">
+        <app-imageview [imageArrayToImageView]="builtImagesArray" [displayMode]="displayType"></app-imageview>
+        <!--<button>Prev Page</button>
+        <button>Next Page</button>-->
+    </div>
   </div>
 </div>
 

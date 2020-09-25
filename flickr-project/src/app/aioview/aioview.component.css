@@ -1,0 +1,14 @@
+img {
+    object-fit: scale-down;
+    width: 25%;
+    height: 200px;
+    box-shadow: 0 0 2px 0px #073b4c;
+
+    transition: box-shadow 0.2s;
+}
+
+img:hover {
+    box-shadow: 0 0 10px 0px black;
+
+    transition: box-shadow 0.2s;
+}

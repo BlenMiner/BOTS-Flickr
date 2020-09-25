@@ -18,16 +18,25 @@ export class AppComponent {
   title = 'flickr-project';
   imageToReturn = "";
   builtImagesArray = [];
-  builtImagesArrayForAio = [];
   totalRowNeeded: Number;
   displayType: string;
 
-  constructor(private flickrService: FlickrService) {}
+  currentPage: number = 0;
+
+  constructor(private flickrService: FlickrService) {
+      this.requestSearch();
+  }
 
   requestSearch(): void {
     this.photosResult = null;
 
-    this.flickrService.search(this.searchEntry, this.minDateField, this.maxDateField).subscribe(
+    this.flickrService.search(this.searchEntry,
+        this.minDateField,
+        this.maxDateField,
+        false,
+        true,
+        this.currentPage).subscribe
+    (
       (data) => {
         this.photosResult = data;
         this.builtImagesArray = [];
@@ -35,47 +44,14 @@ export class AppComponent {
         this.totalRowNeeded = Math.round(len / 4);
 
         this.photosResult.photos.photo.forEach(element => {
-            this.builtImagesArray.push("https://farm" + element.farm + ".staticflickr.com/" + element.server + "/" + element.id + "_" + element.secret + ".jpg");
+            this.builtImagesArray.push(this.flickrService.get_img_url(element));
         });
 
-        let counter = 0;
-        for (let i = 0; i < this.totalRowNeeded; i++) {
-          let imagesLinkArray = [];
-          for (let j = 0; j < 4; j++) {
-            if (this.builtImagesArray[counter] !== undefined)
-            {
-              imagesLinkArray.push(this.builtImagesArray[counter]);
-            }
-            
-            counter++;
-            
-          }
-          if (imagesLinkArray.length != 0)
-          {
-            this.builtImagesArrayForAio.push(imagesLinkArray);
-          }
-          counter++;
-          
-          /*if (imagesLinkArray !== undefined)
-          {
-            this.builtImagesArrayForAio.push(imagesLinkArray);
-          }*/
-          
-        }
+        let e = document.getElementById("display_type");
+        this.displayType = e.options[e.selectedIndex].value;
 
-        console.log("Printing Array for AIO");
-
-        this.builtImagesArrayForAio.forEach(element => {
-
-          console.log(element);
-          
-        });
-        
         console.log("Total links: " + len);
         console.log("Display in mode: " + this.displayType);
-        //console.log(this.builtImagesArray);
-        //console.log("We need " + this.totalRowNeeded + " rows");
-        
       },
       (error: HttpErrorResponse) => {
         console.error(error);

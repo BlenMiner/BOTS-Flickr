@@ -13,10 +13,9 @@ export class ImageviewComponent implements OnInit {
 
   @Input() imageArrayToImageView : Array<string>;
   @Input() displayMode : string;
-  @Input() imageArrayToImageViewAio : Array<Array<string>>;
 
   ngOnInit(): void {
-    
+
   }
 
 
